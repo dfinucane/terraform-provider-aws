@@ -758,11 +758,11 @@ func customizeDiffNLBSubnets(diff *schema.ResourceDiff, v interface{}) error {
 	// If other differences arise we'll want to refactor to check other
 	// conditions in combinations, but for now all we handle is subnets
 	lbType := diff.Get("load_balancer_type").(string)
-	if "network" != lbType {
+	if lbType != "network" {
 		return nil
 	}
 
-	if "" == diff.Id() {
+	if diff.Id() == "" {
 		return nil
 	}
 
